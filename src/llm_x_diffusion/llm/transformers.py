@@ -19,9 +19,8 @@ def load_llm(name, device):
     return AutoTokenizer.from_pretrained(name), AutoModelForCausalLM.from_pretrained(name, dtype=torch.float32).to(device).eval().requires_grad_(False)
 
 @torch.no_grad()
-def generate_text(tokenizer, model, prompts, device, max_tokens=100, temperature=0.7):
-    sys = "You are a professional prompt engineer for AI image generators. Expand the user's prompt into a detailed, visually descriptive prompt. Use descriptive adjectives, specify lighting, style, and composition. Output ONLY the expanded prompt, without any conversational filler or introductions."
-    texts = [tokenizer.apply_chat_template([{"role": "system", "content": sys}, {"role": "user", "content": p}], tokenize=False, add_generation_prompt=True) for p in prompts]
+def generate_text(tokenizer, model, prompts, device, system_prompt, max_tokens=100, temperature=0.7):
+    texts = [tokenizer.apply_chat_template([{"role": "system", "content": system_prompt}, {"role": "user", "content": p}], tokenize=False, add_generation_prompt=True) for p in prompts]
     inputs = tokenizer(texts, return_tensors="pt", padding=True).to(device)
     outputs = model.generate(**inputs, max_new_tokens=max_tokens, temperature=temperature)
     return [tokenizer.decode(out[inputs.input_ids.shape[-1]:], skip_special_tokens=True).strip() for out in outputs]

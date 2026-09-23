@@ -43,16 +43,19 @@ Adjust these in `.env` or leave as defaults:
 | :--- | :--- | :--- |
 | `LLM_MODEL` | `Qwen/Qwen2.5-1.5B-Instruct` | LLM for prompt expansion |
 | `DIFFUSION_MODEL` | `stable-diffusion-v1-5/...` | Base image model |
+| `SYSTEM_PROMPT_PATH` | `src/llm_x_diffusion/system_prompt/default.md` | Path to the LLM system instructions |
 | `SEED` | `42` | For reproducibility |
 | `STEPS` | `50` | Denoising iterations |
 | `GUIDANCE_SCALE` | `7.5` | Prompt adherence (CFG) |
 | `TEMPERATURE` | `0.7` | LLM creativity |
 | `NEGATIVE_PROMPT` | `""` | Default terms to avoid |
 
+**Customizing Prompts**: If `SYSTEM_PROMPT_PATH` is not specified, the tool uses the default system prompt. To use your own instructions, specify the path to your `.md` file in the `.env` configuration.
+
 ## Output
 Results are saved in `artifacts/<timestamp>/`:
 - `output.png`: The generated image.
-- `info.json`: Complete metadata of the run (prompts, seed, hyperparameters).
+- `info.json`: Complete metadata of the run (input prompt, system prompt, expanded prompt, seed, hyperparameters).
 
 ## License
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
