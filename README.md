@@ -21,6 +21,20 @@ A streamlined pipeline that uses an LLM to expand simple user inputs into detail
    ```
    *(The second argument for the negative prompt is optional)*
 
+## Run Modes
+
+The tool supports two operating modes using the `--mode` flag:
+
+| Mode | Command | Description |
+| :--- | :--- | :--- |
+| `pipeline` (Default) | `--mode pipeline` | **LLM $\to$ Diffusion**: Expands the input prompt via the LLM before generating the image. |
+| `diffusion` | `--mode diffusion` | **Diffusion Only**: Uses the input prompt directly. Skips the LLM stage to save memory and time. |
+
+### Example: Diffusion-Only Mode
+```bash
+uv run llm-x-diffusion "A cat riding a skateboard" "blurry, low quality" --mode diffusion
+```
+
 ## Configuration
 
 Adjust these in `.env` or leave as defaults:
