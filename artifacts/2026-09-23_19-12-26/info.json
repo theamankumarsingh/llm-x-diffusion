@@ -1,8 +1,13 @@
 {
-  "timestamp": "2026-09-04_16-55-51",
+  "timestamp": "2026-09-23_19-12-26",
+  "mode": "pipeline",
+  "device": "cpu",
   "input_prompt": "A cat riding a skateboard",
+  "system_prompt": "You are a professional prompt engineer for AI image generators. Expand the user's prompt into a detailed, visually descriptive prompt. Use descriptive adjectives, specify lighting, style, and composition. Output ONLY the expanded prompt, without any conversational filler or introductions.",
   "llm_output": "A sleek black cat perched atop a brightly colored skateboard, its agile paws gripping the surface with practiced ease as it glides smoothly down a bustling city street under the golden hour of late afternoon sunlight, casting long shadows across the pavement that seem to dance in time with the cat's confident strides, capturing every intricate detail of the urban environment from towering skyscrapers to neon-lit",
   "negative_prompt": "blurry, low quality",
+  "llm_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "diffusion_model": "stable-diffusion-v1-5/stable-diffusion-v1-5",
   "steps": 50,
   "guidance_scale": 7.5,
   "temperature": 0.7,
@@ -59302,5 +59307,5 @@
       ]
     ]
   ],
-  "diffusion_output": "Image saved to artifacts/2026-09-04_16-55-51/output.png"
+  "diffusion_output": "Image saved to artifacts/2026-09-23_19-12-26/output.png"
 }

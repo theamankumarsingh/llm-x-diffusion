@@ -55,7 +55,7 @@ Adjust these in `.env` or leave as defaults:
 ## Output
 Results are saved in `artifacts/<timestamp>/`:
 - `output.png`: The generated image.
-- `info.json`: Complete metadata of the run (input prompt, system prompt, expanded prompt, seed, hyperparameters).
+- `info.json`: Comprehensive run metadata, including the model versions, system and expanded prompts, device used, and all hyperparameters.
 
 ## License
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.

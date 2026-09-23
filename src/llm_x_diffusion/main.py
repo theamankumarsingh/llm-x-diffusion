@@ -47,7 +47,7 @@ def main():
     temperature = float(os.environ.get("TEMPERATURE") or 0.7)
     
     torch.manual_seed(seed)
-    unet, vae, sched, d_tok, t_enc = load_diffusion(os.environ.get("DIFFUSION_MODEL", "stable-diffusion-v1-5/stable-diffusion-v1-5"), dev)
+    unet, vae, sched, d_tok, t_enc = load_diffusion(diff_model_name, dev)
     
     max_tokens = d_tok.model_max_length
     if mode == "pipeline":
@@ -63,10 +63,11 @@ def main():
     
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     info = {
-        "timestamp": timestamp, "input_prompt": prompt, "system_prompt": sys_prompt, "llm_output": llm_out, "negative_prompt": neg_prompt,
+        "timestamp": timestamp, "mode": mode, "device": dev,
+        "input_prompt": prompt, "system_prompt": sys_prompt, "llm_output": llm_out, "negative_prompt": neg_prompt,
+        "llm_model": llm_model_name, "diffusion_model": diff_model_name,
         "steps": steps, "guidance_scale": guidance_scale, "temperature": temperature, "max_tokens": max_tokens,
-        "seed": seed, "diffusion_input": pos_emb.tolist(), "diffusion_output": f"Image saved to artifacts/{timestamp}/output.png",
-        "mode": mode
+        "seed": seed, "diffusion_input": pos_emb.tolist(), "diffusion_output": f"Image saved to artifacts/{timestamp}/output.png"
     }
     save_results(img, info, timestamp)
 
